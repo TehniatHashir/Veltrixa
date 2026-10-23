@@ -1,0 +1,178 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Poppins", sans-serif;
+  --font-sans: "Inter", sans-serif;
+
+  --radius-sm: calc(var(--radius) - 3px);
+  --radius-md: calc(var(--radius) - 1px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 1px);
+  --radius-2xl: calc(var(--radius) + 2px);
+  --radius-3xl: calc(var(--radius) + 3px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* brand palette */
+  --color-blue: var(--brand-blue);            /* Electric Blue */
+  --color-blue-dark: var(--brand-blue-dark);  /* hover state = AI Blue */
+  --color-ai-blue: var(--brand-ai-blue);
+  --color-cyan: var(--brand-cyan);            /* Digital Cyan */
+  --color-ink: var(--brand-ink);              /* Primary Navy */
+  --color-ink-soft: var(--brand-ink-soft);
+  --color-surface: var(--surface);            /* Soft Blue */
+
+  /* accent aliases used across sections (all follow the palette) */
+  --color-pink: var(--brand-pink);
+  --color-pink-dark: var(--brand-pink-dark);
+  --color-magenta: var(--brand-magenta);
+  --color-violet: var(--brand-violet);
+  --color-orange: var(--brand-orange);
+  --color-star: var(--brand-star);
+
+  /* tokens used by Team, Timeline, CTA, footer */
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-darker: var(--brand-darker);
+  --color-brand-tint: var(--brand-tint);
+  --background-image-brand-gradient: var(--brand-gradient);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* ── Brand palette (Tech Company Color Palette) ───────────── */
+  --brand-ink: #0B1228;          /* Primary Navy: dark sections, footer */
+  --brand-ink-soft: #131B3A;     /* raised cards on navy */
+  --brand-navy-mid: #172A68;     /* middle stop of the hero gradient */
+  --brand-blue: #3155FF;         /* Electric Blue: CTA, links, highlights */
+  --brand-ai-blue: #5B7CFF;      /* AI Blue: hover, secondary buttons */
+  --brand-blue-dark: #5B7CFF;    /* hover state (palette says AI Blue) */
+  --brand-cyan: #48C8FF;         /* Digital Cyan: small accents, glow */
+
+  /* Accent aliases. Everything follows the blue palette.
+     Point any of these at a different colour to bring a hue back. */
+  --brand-magenta: var(--brand-cyan);
+  --brand-violet: var(--brand-ai-blue);
+  --brand-orange: var(--brand-cyan);
+  --brand-pink: var(--brand-blue);
+  --brand-pink-dark: var(--brand-blue-dark);
+  --brand-star: #FBBF24;         /* rating stars (not in palette) */
+
+  --brand-dark: var(--brand-ink);
+  --brand-darker: #080E1E;       /* bottom bars / footer */
+  --brand-tint: #EEF4FF;         /* Soft Blue chips */
+
+  --brand-gradient: linear-gradient(to right, var(--brand-blue), var(--brand-cyan));           /* Primary Tech Gradient */
+  --brand-hero-gradient: linear-gradient(135deg, var(--brand-ink), var(--brand-navy-mid), var(--brand-blue)); /* Premium Hero Gradient */
+
+  /* ── Core UI tokens ───────────────────────────────────────── */
+  --background: #F8FAFD;         /* Off White: main light background */
+  --surface: #EEF4FF;            /* Soft Blue: alternate light sections */
+  --foreground: #111827;         /* Primary Text */
+
+  --card: #FFFFFF;               /* White: cards, surfaces */
+  --card-foreground: #111827;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #111827;
+
+  --primary: var(--brand-blue);
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #EEF4FF;
+  --secondary-foreground: #111827;
+
+  --muted: #EEF4FF;
+  --muted-foreground: #64748B;   /* Secondary Text */
+
+  --accent: #EEF4FF;
+  --accent-foreground: #111827;
+
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+
+  --border: #DCE4F0;             /* Border */
+  --input: #DCE4F0;
+  --ring: var(--brand-blue);
+
+  --shadow-soft: 0 18px 45px -22px rgb(11 18 40 / 0.18);
+  --shadow-glow: 0 24px 60px -28px rgb(49 85 255 / 0.35);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    letter-spacing: 0;
+  }
+}
+
+@utility shadow-brand-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-brand-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility text-gradient-brand {
+  background-image: linear-gradient(to right, var(--brand-blue), var(--brand-ai-blue), var(--brand-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-brand {
+  background-image: var(--brand-gradient);
+}
+
+@utility bg-gradient-hero {
+  background-image: var(--brand-hero-gradient);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
